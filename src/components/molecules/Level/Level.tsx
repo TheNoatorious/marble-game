@@ -1,4 +1,5 @@
-import BlockStart from "../BlockStart/BlockStart";
+import BlockSpinner from "../../atoms/BlockSpinner/BlockSpinner";
+import BlockStart from "../../atoms/BlockStart/BlockStart";
 
 /**
  * Level component
@@ -12,7 +13,8 @@ import BlockStart from "../BlockStart/BlockStart";
 const Level = (): React.JSX.Element => {
     return (
         <>
-            <BlockStart position={[0, 0, 0]} />
+            <BlockStart position={[0, 0, 4]} />
+            <BlockSpinner position={[0, 0, 0]} />
         </>
     );
 };
