@@ -11,8 +11,8 @@ const obstacleMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
 /**
  * BlockSpinner Component
  *
- * This component represents an obstacle on a platform using two box geometries
- * and Rapier, applying two different materials with a color.
+ * This component represents two meshes: an obstacle and a platform
+ * It rotates in random directions with Rapier, applying two different materials with a color.
  *
  * @param {Array<number>} [position=[0, 0, 0]] - The position of the obstacle in 3D space.
  *        Defaults to the origin if not provided.
