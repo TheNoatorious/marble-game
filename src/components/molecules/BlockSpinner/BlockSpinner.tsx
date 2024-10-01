@@ -5,7 +5,7 @@ import { RigidBody } from "@react-three/rapier";
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
-const floor2Material = new THREE.MeshStandardMaterial({ color: 0xf0f0f0 });
+const floor2Material = new THREE.MeshStandardMaterial({ color: 0xffffff });
 const obstacleMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
 
 /**

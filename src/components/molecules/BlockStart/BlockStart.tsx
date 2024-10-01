@@ -2,7 +2,7 @@ import * as THREE from "three";
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
-const floor1Material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+const floor1Material = new THREE.MeshStandardMaterial({ color: 0xf0f0f0 });
 const obstacleMaterial = new THREE.MeshStandardMaterial({ color: "orangered" });
 const wallMaterial = new THREE.MeshStandardMaterial({ color: "slategrey" });
 
