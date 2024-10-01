@@ -1,7 +1,8 @@
-import BlockAxe from "../../atoms/BlockAxe/BlockAxe";
-import BlockLimbo from "../../atoms/BlockLimbo/BlockLimbo";
-import BlockSpinner from "../../atoms/BlockSpinner/BlockSpinner";
-import BlockStart from "../../atoms/BlockStart/BlockStart";
+import BlockAxe from "../BlockAxe/BlockAxe";
+import BlockEnd from "../BlockEnd/BlockEnd";
+import BlockLimbo from "../BlockLimbo/BlockLimbo";
+import BlockSpinner from "../BlockSpinner/BlockSpinner";
+import BlockStart from "../BlockStart/BlockStart";
 
 /**
  * Level component
@@ -15,10 +16,11 @@ import BlockStart from "../../atoms/BlockStart/BlockStart";
 const Level = (): React.JSX.Element => {
     return (
         <>
-            <BlockStart position={[0, 0, 12]} />
-            <BlockSpinner position={[0, 0, 8]} />
-            <BlockLimbo position={[0, 0, 4]} />
-            <BlockAxe position={[0, 0, 0]} />
+            <BlockStart position={[0, 0, 16]} />
+            <BlockSpinner position={[0, 0, 12]} />
+            <BlockLimbo position={[0, 0, 8]} />
+            <BlockAxe position={[0, 0, 4]} />
+            <BlockEnd position={[0, 0, 0]} />
         </>
     );
 };
