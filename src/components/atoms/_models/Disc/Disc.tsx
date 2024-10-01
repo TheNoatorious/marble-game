@@ -17,6 +17,7 @@ const Disc = ({ color, ...props }: any): React.JSX.Element => {
     scene.traverse((child: THREE.Object3D) => {
         if ((child as THREE.Mesh).isMesh) {
             const mesh = child as THREE.Mesh;
+            mesh.castShadow = true;
             if (mesh.material) {
                 mesh.material = new THREE.MeshPhysicalMaterial({
                     color: new THREE.Color("#bb86a1").convertSRGBToLinear(),
