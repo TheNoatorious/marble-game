@@ -1,3 +1,4 @@
+import BlockLimbo from "../../atoms/BlockLimbo/BlockLimbo";
 import BlockSpinner from "../../atoms/BlockSpinner/BlockSpinner";
 import BlockStart from "../../atoms/BlockStart/BlockStart";
 
@@ -13,8 +14,9 @@ import BlockStart from "../../atoms/BlockStart/BlockStart";
 const Level = (): React.JSX.Element => {
     return (
         <>
-            <BlockStart position={[0, 0, 4]} />
-            <BlockSpinner position={[0, 0, 0]} />
+            <BlockStart position={[0, 0, 8]} />
+            <BlockSpinner position={[0, 0, 4]} />
+            <BlockLimbo position={[0, 0, 0]} />
         </>
     );
 };
