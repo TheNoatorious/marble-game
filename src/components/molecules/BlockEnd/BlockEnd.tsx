@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import { useGLTF } from "@react-three/drei";
+import Hamburger from "../../atoms/_models/Hamburger/Hamburger";
+import Disc from "../../atoms/_models/Disc/Disc";
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
@@ -21,7 +22,6 @@ const floor1Material = new THREE.MeshStandardMaterial({ color: 0xf0f0f0 });
  * @returns {React.JSX.Element} A ThreeJS group containing a single mesh representing a block.
  */
 const BlockEnd = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
-    const hamburger = useGLTF("./hamburger.glb");
     return (
         <>
             <group position={position}>
@@ -32,7 +32,12 @@ const BlockEnd = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
                     receiveShadow
                     scale={[4, 0.2, 4]}
                 />
-                <primitive object={hamburger.scene} />
+                <Disc
+                    scale={0.2}
+                    color={0xffff33}
+                    position={[2, 0.8, 2]}
+                    rotation={[-0.2, 0.5, 0]}
+                />
             </group>
         </>
     );
