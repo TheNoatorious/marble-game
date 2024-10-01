@@ -25,7 +25,7 @@ const obstacleMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
  */
 const BlockLimbo = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
     const obstacle: any = useRef();
-    const [timeOffset] = useState(() => Math.random() * Math.PI * 2);
+    const [timeOffset] = useState(() => Math.random() * Math.PI * 2); // Phase shift
 
     /**
      * Rotates obstacle on the Y-axis using elapsed time.
@@ -41,7 +41,7 @@ const BlockLimbo = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
         const translation = Math.sin(time + timeOffset) + minTranslation; // Time used for the vertical movement
         obstacle.current.setNextKinematicTranslation({
             x: position[0],
-            y: translation,
+            y: position[1] + translation,
             z: position[2],
         });
     });
