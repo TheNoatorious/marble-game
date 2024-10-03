@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import BlockAxe from "../BlockAxe/BlockAxe";
-import BlockEnd from "../BlockEnd/BlockEnd";
-import BlockLimbo from "../BlockLimbo/BlockLimbo";
-import BlockSpinner from "../BlockSpinner/BlockSpinner";
-import BlockStart from "../BlockStart/BlockStart";
+import BlockAxe from "../../molecules/BlockAxe/BlockAxe";
+import BlockEnd from "../../molecules/BlockEnd/BlockEnd";
+import BlockLimbo from "../../molecules/BlockLimbo/BlockLimbo";
+import BlockSpinner from "../../molecules/BlockSpinner/BlockSpinner";
+import BlockStart from "../../molecules/BlockStart/BlockStart";
 import Bounds from "../../atoms/Bounds/Bounds";
 import { CuboidCollider } from "@react-three/rapier";
 
