@@ -1,8 +1,10 @@
+import { useMemo } from "react";
 import BlockAxe from "../BlockAxe/BlockAxe";
 import BlockEnd from "../BlockEnd/BlockEnd";
 import BlockLimbo from "../BlockLimbo/BlockLimbo";
 import BlockSpinner from "../BlockSpinner/BlockSpinner";
 import BlockStart from "../BlockStart/BlockStart";
+import Bounds from "../../atoms/Bounds/Bounds";
 
 /**
  * Level component
@@ -13,10 +15,34 @@ import BlockStart from "../BlockStart/BlockStart";
  * @returns {React.JSX.Element} A 3D level consisting of various components
  */
 
-const Level = (): React.JSX.Element => {
+const Level = ({
+    trapCount = 5,
+    types = [BlockSpinner, BlockAxe, BlockLimbo],
+}: {
+    trapCount: number;
+    types?: React.ComponentType[];
+}): React.JSX.Element => {
+    const defaultBlocks: number = 2;
+    // Returns a random set of traps
+    const blocks = useMemo(() => {
+        const blocks = [];
+
+        for (let i = 0; i < trapCount; i++) {
+            const type = types[Math.floor(Math.random() * types.length)];
+            blocks.push(type);
+        }
+
+        return blocks;
+    }, [trapCount, types]);
+
     return (
         <>
             <BlockStart position={[0, 0, 0]} />
+            {blocks.map((Block: any, index: number) => (
+                <Block key={index} position={[0, 0, -(index + 1) * 4]} />
+            ))}
+            <BlockEnd position={[0, 0, -(trapCount + 1) * 4]} />
+            <Bounds length={trapCount + defaultBlocks} />
         </>
     );
 };
