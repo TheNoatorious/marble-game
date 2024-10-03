@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import Hamburger from "../../atoms/_models/Hamburger/Hamburger";
 import Disc from "../../atoms/_models/Disc/Disc";
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
@@ -32,6 +31,7 @@ const BlockEnd = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
                     receiveShadow
                     scale={[4, 0.2, 4]}
                 />
+
                 <Disc
                     scale={0.2}
                     color={0xffff33}
