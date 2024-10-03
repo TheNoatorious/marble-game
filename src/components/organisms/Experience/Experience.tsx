@@ -14,18 +14,18 @@ const Experience = () => {
     return (
         <>
             <OrbitControls makeDefault />
-            <Physics debug>
-                <Lights />
-                <Level />
-            </Physics>
-            <Clouds material={THREE.MeshBasicMaterial} position={[0, 4, -10]}>
-                <Cloud segments={10} bounds={[10, 2, 2]} volume={10} />
+            <Clouds material={THREE.MeshBasicMaterial} position={[0, 4, -35]}>
+                <Cloud segments={2} bounds={[10, 2, 2]} volume={10} />
 
-                <Cloud seed={1} scale={2} volume={5} color="white" fade={100} />
+                <Cloud seed={1} scale={2} volume={2} color="white" fade={100} />
             </Clouds>
 
-            <Environment preset="dawn" />
             <Sky />
+
+            <Physics>
+                <Lights />
+                <Level trapCount={4} />
+            </Physics>
         </>
     );
 };
