@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { Float, useGLTF } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 
 /**
@@ -18,14 +18,6 @@ const Disc = ({ color, ...props }: any): React.JSX.Element => {
         if ((child as THREE.Mesh).isMesh) {
             const mesh = child as THREE.Mesh;
             mesh.castShadow = true;
-            if (mesh.material) {
-                mesh.material = new THREE.MeshPhysicalMaterial({
-                    color: new THREE.Color("#bb86a1").convertSRGBToLinear(),
-                    roughness: 0,
-                    clearcoat: 1,
-                    clearcoatRoughness: 0,
-                });
-            }
         }
     });
     return (
