@@ -6,10 +6,10 @@ const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 const floor1Material = new THREE.MeshStandardMaterial({ color: 0xf0f0f0 });
 
 /**
- * BlockStart Component
+ * BlockEnd Component
  *
  * This component creates a basic platform using a box geometry, and applies a standard material with a color.
- * The block is placed at a configurable position and can be used as a starting point
+ * The block is placed at a configurable position and is can be used as an end block of a level.
  *
  * @param {Array<number>} [position=[0, 0, 0]] - The position of the block in 3D space.
  *        Defaults to the origin if not provided.
