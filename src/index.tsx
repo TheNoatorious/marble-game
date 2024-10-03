@@ -1,7 +1,7 @@
 import "./style.css";
 import ReactDOM from "react-dom/client";
 import { Canvas } from "@react-three/fiber";
-import Experience from "./components/organisms/Experience/Experience";
+import Experience from "./components/templates/Experience/Experience";
 
 const rootElement = document.querySelector("#root");
 
