@@ -5,6 +5,7 @@ import BlockLimbo from "../BlockLimbo/BlockLimbo";
 import BlockSpinner from "../BlockSpinner/BlockSpinner";
 import BlockStart from "../BlockStart/BlockStart";
 import Bounds from "../../atoms/Bounds/Bounds";
+import { CuboidCollider } from "@react-three/rapier";
 
 /**
  * Level component
@@ -43,6 +44,12 @@ const Level = ({
             ))}
             <BlockEnd position={[0, 0, -(trapCount + 1) * 4]} />
             <Bounds length={trapCount + defaultBlocks} />
+            <CuboidCollider
+                args={[2, 0.1, 2 * length]}
+                position={[0, -0.1, -(length * 2) + defaultBlocks]}
+                restitution={0.2}
+                friction={1}
+            />
         </>
     );
 };

@@ -22,7 +22,7 @@ const Experience = () => {
 
             <Sky />
 
-            <Physics>
+            <Physics debug>
                 <Lights />
                 <Level trapCount={4} />
             </Physics>
