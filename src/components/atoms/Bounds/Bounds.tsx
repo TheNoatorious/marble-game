@@ -4,8 +4,6 @@ import * as THREE from "three";
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
-const floor2Material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-const obstacleMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
 const wallMaterial = new THREE.MeshStandardMaterial({ color: "0xffffff" });
 
 const Bounds = ({ length = 1 }: any) => {
