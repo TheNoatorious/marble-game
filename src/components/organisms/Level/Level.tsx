@@ -5,7 +5,7 @@ import BlockLimbo from "../../molecules/BlockLimbo/BlockLimbo";
 import BlockSpinner from "../../molecules/BlockSpinner/BlockSpinner";
 import BlockStart from "../../molecules/BlockStart/BlockStart";
 import Bounds from "../../atoms/Bounds/Bounds";
-import { CuboidCollider } from "@react-three/rapier";
+import { CuboidCollider, RigidBody } from "@react-three/rapier";
 
 /**
  * Level component
@@ -38,18 +38,20 @@ const Level = ({
 
     return (
         <>
-            <BlockStart position={[0, 0, 0]} />
-            {blocks.map((Block: any, index: number) => (
-                <Block key={index} position={[0, 0, -(index + 1) * 4]} />
-            ))}
-            <BlockEnd position={[0, 0, -(trapCount + 1) * 4]} />
-            <Bounds length={trapCount + defaultBlocks} />
-            <CuboidCollider
-                args={[2, 0.1, 2 * length]}
-                position={[0, -0.1, -(length * 2) + defaultBlocks]}
-                restitution={0.2}
-                friction={1}
-            />
+            <RigidBody type="fixed" restitution={0.2} friction={0}>
+                <BlockStart position={[0, 0, 0]} />
+                {blocks.map((Block: any, index: number) => (
+                    <Block key={index} position={[0, 0, -(index + 1) * 4]} />
+                ))}
+                <BlockEnd position={[0, 0, -(trapCount + 1) * 4]} />
+                <Bounds length={trapCount + defaultBlocks} />
+                <CuboidCollider
+                    args={[2, 0.1, 2 * length]}
+                    position={[0, -0.1, -(length * 2) + defaultBlocks]}
+                    restitution={0.2}
+                    friction={1}
+                />
+            </RigidBody>
         </>
     );
 };
