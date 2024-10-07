@@ -1,14 +1,9 @@
 import * as THREE from "three";
 import { Physics } from "@react-three/rapier";
-import {
-    Cloud,
-    Clouds,
-    Environment,
-    OrbitControls,
-    Sky,
-} from "@react-three/drei";
+import { Cloud, Clouds, OrbitControls, Sky } from "@react-three/drei";
 import Lights from "../../atoms/Lights/Lights";
 import Level from "../../organisms/Level/Level";
+import Player from "../../atoms/Player/Player";
 
 const Experience = () => {
     return (
@@ -25,6 +20,7 @@ const Experience = () => {
             <Physics debug>
                 <Lights />
                 <Level trapCount={4} />
+                <Player />
             </Physics>
         </>
     );
