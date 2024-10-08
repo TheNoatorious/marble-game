@@ -2,11 +2,12 @@
 
 This project is a physics-based game built using ThreeJS, React Three Fiber, with physics powered by Rapier and UI/UX helpers from @react-three/drei.
 
-The game is a hands-on way to apply key web development and 3D graphics concepts.
+The game is a hands-on way to apply web development and 3D graphics concepts.
 
 ## Gameplay Overview
 
-You control a marble that must navigate through a series of challenging obstacles to reach the finish line. The level is constantly changing, ensuring that each run is unique!
+You control a marble that must navigate through a series of challenging obstacles to reach the finish line.
+The level is constantly changing, ensuring that each run is unique!
 
 ### Key Mechanics:
 
