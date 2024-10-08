@@ -1,6 +1,8 @@
 # Marble Race Game
 
-This project is a physics-based game using Rapier and a hands-on way to apply certain key concepts.
+This project is a physics-based game built using ThreeJS, React Three Fiber, with physics powered by Rapier and UI/UX helpers from @react-three/drei.
+
+The game is a hands-on way to apply key web development and 3D graphics concepts.
 
 ## Gameplay Overview
 
