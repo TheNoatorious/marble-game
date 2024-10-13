@@ -11,7 +11,13 @@ if (rootElement) {
 
     root.render(
         <KeyboardControls
-            map={[{ name: "forward", keys: ["ArrowUp", "KeyW"] }]}
+            map={[
+                { name: "forward", keys: ["ArrowUp", "KeyW"] },
+                { name: "backward", keys: ["ArrowDown", "KeyS"] },
+                { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
+                { name: "rightward", keys: ["ArrowUpRight", "KeyD"] },
+                { name: "jump", keys: ["Space"] },
+            ]}
         >
             <Canvas
                 shadows
