@@ -8,6 +8,11 @@ const Player = () => {
     const [subscribeKeys, getKeys] = useKeyboardControls();
 
     const jump = () => {
+        const origin = body.current.translation();
+        const originOffset = 0.31; // Move origin to the bottom
+        const originDirection = { x: 0, y: -1, z: 0 };
+
+        origin.y -= originOffset;
         body.current.applyImpulse({ x: 0, y: 0.5, z: 0 });
     };
 
