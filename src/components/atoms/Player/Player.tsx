@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { RigidBody } from "@react-three/rapier";
@@ -6,6 +6,25 @@ import { RigidBody } from "@react-three/rapier";
 const Player = () => {
     const body: any = useRef();
     const [subscribeKeys, getKeys] = useKeyboardControls();
+
+    const jump = () => {
+        body.current.applyImpulse({ x: 0, y: 0.5, z: 0 });
+    };
+
+    useEffect(() => {
+        subscribeKeys(
+            // Selector function
+            (state) => {
+                return state.jump;
+            },
+
+            (keyPressed) => {
+                if (keyPressed) {
+                    console.log("Yes, jump");
+                }
+            }
+        );
+    }, []);
 
     useFrame((state, delta) => {
         const { forward, backward, leftward, rightward } = getKeys();
@@ -52,6 +71,8 @@ const Player = () => {
             colliders="ball"
             restitution={0.2}
             friction={1}
+            linearDamping={0.5}
+            angularDamping={0.5}
             position={[0, 1, 0]}
         >
             <mesh>
