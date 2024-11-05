@@ -12,10 +12,14 @@ const Player = () => {
     const jump = () => {
         const origin = body.current.translation();
         const originOffset = 0.31; // Move origin to the bottom
+        origin.y -= originOffset;
+
         const originDirection = { x: 0, y: -1, z: 0 };
         const ray = new rapier.Ray(origin, originDirection);
+        const hit = rapierWorld.castRay(ray);
 
-        origin.y -= originOffset;
+        console.log(hit.timeOfImpact);
+
         body.current.applyImpulse({ x: 0, y: 0.5, z: 0 });
     };
 
@@ -28,7 +32,7 @@ const Player = () => {
 
             (keyPressed) => {
                 if (keyPressed) {
-                    console.log("Yes, jump");
+                    jump();
                 }
             }
         );
