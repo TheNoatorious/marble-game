@@ -16,15 +16,15 @@ const Player = () => {
 
         const originDirection = { x: 0, y: -1, z: 0 };
         const ray = new rapier.Ray(origin, originDirection);
-        const hit = rapierWorld.castRay(ray);
+        const hit = rapierWorld.castRay(ray, 10, true); // Raycaster, Max time of impact, solid
 
-        console.log(hit.timeOfImpact);
-
-        body.current.applyImpulse({ x: 0, y: 0.5, z: 0 });
+        if (hit.timeOfImpact < 0.15) {
+            body.current.applyImpulse({ x: 0, y: 0.5, z: 0 });
+        }
     };
 
     useEffect(() => {
-        subscribeKeys(
+        const unsubscribeJump = subscribeKeys(
             // Selector function
             (state) => {
                 return state.jump;
@@ -36,6 +36,10 @@ const Player = () => {
                 }
             }
         );
+
+        return () => {
+            unsubscribeJump();
+        };
     }, []);
 
     useFrame((state, delta) => {
