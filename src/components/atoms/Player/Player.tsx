@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import * as THREE from "three";
+import { useEffect, useRef, useState } from "react";
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRapier, RigidBody } from "@react-three/rapier";
@@ -8,6 +9,14 @@ const Player = () => {
     const [subscribeKeys, getKeys] = useKeyboardControls();
     const { rapier, world } = useRapier();
     const rapierWorld: any = world;
+
+    const [smoothedCameraPosition]: any = useState(() => {
+        new THREE.Vector3(10, 10, 10); // From > To camera position
+    });
+
+    const [smoothedCameraTarget]: any = useState(() => {
+        new THREE.Vector3();
+    });
 
     const jump = () => {
         const origin = body.current.translation();
@@ -42,6 +51,9 @@ const Player = () => {
         };
     }, []);
 
+    /**
+     * Controls
+     */
     useFrame((state, delta) => {
         const { forward, backward, leftward, rightward } = getKeys();
 
@@ -78,6 +90,32 @@ const Player = () => {
 
         body.current.applyImpulse(impulse);
         body.current.applyTorqueImpulse(torque);
+    });
+
+    /**
+     * Camera
+     *
+     * The camera has to follow the the marble which the Player controls
+     * The Vector3 has to be set so the camera knows where to look
+     * and is set slightly above the marble
+     */
+    useFrame((state, delta) => {
+        const bodyPosition = body.current.translation(); // Position of the marble
+        const cameraPosition = new THREE.Vector3();
+
+        cameraPosition.copy(bodyPosition);
+        cameraPosition.y += 0.65;
+        cameraPosition.z += 2.25;
+
+        const cameraTarget = new THREE.Vector3();
+        cameraTarget.copy(bodyPosition);
+        cameraTarget.y += 0.25;
+
+        smoothedCameraPosition.lerp(cameraPosition, 5 * delta);
+        smoothedCameraTarget.lerp(cameraTarget, 5 * delta);
+
+        state.camera.position.copy(cameraPosition);
+        state.camera.lookAt(cameraTarget);
     });
 
     return (
