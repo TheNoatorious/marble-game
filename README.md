@@ -6,7 +6,7 @@ The game is a hands-on way to apply web development and 3D graphics concepts.
 
 ## Gameplay Overview
 
-You control a marble that must navigate through a series of challenging obstacles to reach the finish line.
+You control a marble that must navigate through a series of obstacles to reach the finish line.
 The level is constantly changing, ensuring that each run is unique!
 
 ### Key Mechanics:
