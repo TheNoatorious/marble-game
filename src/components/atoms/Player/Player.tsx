@@ -1,33 +1,36 @@
-import * as THREE from "three";
 import { useEffect, useRef, useState } from "react";
 import { useKeyboardControls } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, Vector3 } from "@react-three/fiber";
 import { useRapier, RigidBody } from "@react-three/rapier";
+import * as THREE from "three";
 
 const Player = () => {
     const body: any = useRef();
     const [subscribeKeys, getKeys] = useKeyboardControls();
     const { rapier, world } = useRapier();
-    const rapierWorld: any = world;
+    const rapierWorld = world;
 
-    const [smoothedCameraPosition]: any = useState(() => {
-        new THREE.Vector3(10, 10, 10); // From > To camera position
-    });
-
-    const [smoothedCameraTarget]: any = useState(() => {
-        new THREE.Vector3();
-    });
+    const [smoothedCameraPosition, setSmoothedCameraPosition] =
+        useState<THREE.Vector3>(() => new THREE.Vector3(10, 10, 10));
+    const [smoothedCameraTarget, setSmoothedCameraTarget] =
+        useState<THREE.Vector3>(() => new THREE.Vector3());
 
     const jump = () => {
-        const origin = body.current.translation();
-        const originOffset = 0.31; // Move origin to the bottom
+        const origin: { x: number; y: number; z: number } =
+            body.current.translation();
+        const originOffset: number = 0.31; // Move origin to the bottom
+
         origin.y -= originOffset;
 
-        const originDirection = { x: 0, y: -1, z: 0 };
+        const originDirection: { x: number; y: number; z: number } = {
+            x: 0,
+            y: -1,
+            z: 0,
+        };
         const ray = new rapier.Ray(origin, originDirection);
         const hit = rapierWorld.castRay(ray, 10, true); // Raycaster, Max time of impact, solid
 
-        if (hit.timeOfImpact < 0.15) {
+        if (hit && hit.timeOfImpact < 0.15) {
             body.current.applyImpulse({ x: 0, y: 0.5, z: 0 });
         }
     };
@@ -67,7 +70,6 @@ const Player = () => {
         const torqueStrength = torqueSpeed * delta;
 
         // impulseStrength is changed according to what is being pressed
-
         if (forward) {
             impulse.z -= impulseStrength; // Push marble on the -z-axis
             torque.x -= torqueStrength; // Roll on the x-axis
@@ -100,16 +102,27 @@ const Player = () => {
      * and is set slightly above the marble
      */
     useFrame((state, delta) => {
-        const bodyPosition = body.current.translation(); // Position of the marble
-        const cameraPosition = new THREE.Vector3();
+        const bodyPosition: any = body.current.translation(); // Position of the marble
+        const cameraPosition: Vector3 = new THREE.Vector3();
 
         cameraPosition.copy(bodyPosition);
         cameraPosition.y += 0.65;
         cameraPosition.z += 2.25;
 
-        const cameraTarget = new THREE.Vector3();
+        const cameraTarget: Vector3 = new THREE.Vector3();
         cameraTarget.copy(bodyPosition);
         cameraTarget.y += 0.25;
+
+        // Apply lerp to smooth the camera's movement
+        const newCameraPosition = smoothedCameraPosition
+            .clone()
+            .lerp(cameraPosition, 5 * delta);
+        const newCameraTarget: any = smoothedCameraTarget
+            .clone()
+            .lerp(cameraTarget, 5 * delta);
+
+        setSmoothedCameraPosition(newCameraPosition);
+        setSmoothedCameraTarget(newCameraTarget);
 
         smoothedCameraPosition.lerp(cameraPosition, 5 * delta);
         smoothedCameraTarget.lerp(cameraTarget, 5 * delta);
