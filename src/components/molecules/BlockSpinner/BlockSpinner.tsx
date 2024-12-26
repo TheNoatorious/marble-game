@@ -25,8 +25,8 @@ const obstacleMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
  */
 const BlockSpinner = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
     const obstacle: any = useRef();
-    const minimumSpeed = 0.2;
-    const counterRotation = Math.random() < 0.5 ? -1 : 1; // counter- or clockwiserotation
+    const minimumSpeed: number = 0.2;
+    const counterRotation: number = Math.random() < 0.5 ? -1 : 1; // counter- or clockwiserotation
     const [speed] = useState(
         () => Math.random() + minimumSpeed * counterRotation
     );

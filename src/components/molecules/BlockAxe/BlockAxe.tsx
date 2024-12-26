@@ -1,12 +1,15 @@
-import * as THREE from "three";
+import { BoxGeometry, MeshStandardMaterial } from "three";
 import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { RigidBody } from "@react-three/rapier";
 
-const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
-
-const floor2Material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-const obstacleMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+const boxGeometry: BoxGeometry = new BoxGeometry(1, 1, 1);
+const floor2Material: MeshStandardMaterial = new MeshStandardMaterial({
+    color: 0xffffff,
+});
+const obstacleMaterial: MeshStandardMaterial = new MeshStandardMaterial({
+    color: 0xff0000,
+});
 
 /**
  * BlockLimbo Component
@@ -36,10 +39,10 @@ const BlockAxe = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
      * @param {Object} state - The state object provided by `useFrame`, including the clock.
      */
     useFrame((state) => {
-        const time = state.clock.getElapsedTime();
-        const amplitude = 1.25;
-        const translationX = Math.sin(time + timeOffset) * amplitude;
-        const translationY = 0.75;
+        const time: number = state.clock.getElapsedTime();
+        const amplitude: number = 1.25;
+        const translationX: number = Math.sin(time + timeOffset) * amplitude;
+        const translationY: number = 0.75;
 
         obstacle.current.setNextKinematicTranslation({
             x: position[0] + translationX,
