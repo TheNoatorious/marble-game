@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./components/templates/Experience/Experience";
 import { KeyboardControls } from "@react-three/drei";
+import Interface from "./components/organisms/PlayerInterface/PlayerInterface";
 
 const rootElement = document.querySelector("#root");
 
@@ -30,6 +31,7 @@ if (rootElement) {
             >
                 <Experience />
             </Canvas>
+            <Interface />
         </KeyboardControls>
     );
 } else {
