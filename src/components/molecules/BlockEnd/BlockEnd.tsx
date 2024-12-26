@@ -1,9 +1,10 @@
-import * as THREE from "three";
+import { BoxGeometry, MeshStandardMaterial } from "three";
 import Disc from "../../atoms/_models/Disc/Disc";
 
-const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
-
-const floor1Material = new THREE.MeshStandardMaterial({ color: 0xf0f0f0 });
+const boxGeometry: BoxGeometry = new BoxGeometry(1, 1, 1);
+const floor1Material: MeshStandardMaterial = new MeshStandardMaterial({
+    color: 0xf0f0f0,
+});
 
 /**
  * BlockEnd Component
