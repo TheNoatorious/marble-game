@@ -1,3 +1,44 @@
+.player-interface {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
     font-family: "Bebas Neue", cursive;
+    display: flex;
+    justify-content: center;
+}
+
+.player-interface__time {
+    position: absolute;
+    top: 12%;
+    left: 0;
+    width: 100%;
+    color: #fff;
     font-size: 3rem;
     padding: 10px 0 5px 0;
+    text-align: center;
+    background: #51515126;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    backdrop-filter: blur(5px);
+}
+
+.player-interface__btn {
+    display: flex;
+    justify-content: center;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.player-interface__btn--restart {
+    top: 40%;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    background: #00000033;
+    padding: 10px 0 5px 0;
+    color: #fff;
+    font-size: 4rem;
+}
