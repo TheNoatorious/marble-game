@@ -42,3 +42,35 @@
     color: #fff;
     font-size: 4rem;
 }
+
+/**
+ * Controls
+ */
+
+.player-interface__controls {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+}
+
+.player-interface__row {
+    display: flex;
+    justify-content: center;
+}
+
+.player-interface__key {
+    width: 40px;
+    height: 40px;
+    margin: 4px;
+    border: 2px solid #ffffff;
+    background: #ffffff44;
+}
+
+.player-interface__key--large {
+    width: 144px;
+}
+
+.player-interface__key--active {
+    background: #ffffff99;
+}
