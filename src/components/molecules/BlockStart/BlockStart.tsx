@@ -1,10 +1,9 @@
-import * as THREE from "three";
+import { BoxGeometry, MeshStandardMaterial } from "three";
 
-const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
-
-const floor1Material = new THREE.MeshStandardMaterial({ color: 0xf0f0f0 });
-const obstacleMaterial = new THREE.MeshStandardMaterial({ color: "orangered" });
-const wallMaterial = new THREE.MeshStandardMaterial({ color: "slategrey" });
+const boxGeometry: BoxGeometry = new BoxGeometry(1, 1, 1);
+const floor1Material: MeshStandardMaterial = new MeshStandardMaterial({
+    color: 0xf0f0f0,
+});
 
 /**
  * BlockStart Component
