@@ -43,7 +43,10 @@ const BlockSpinner = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
         const time = state.clock.getElapsedTime();
         const rotation = new THREE.Quaternion();
         rotation.setFromEuler(new THREE.Euler(0, time * speed, 0)); // time used as the angle to rotate
-        obstacle.current.setNextKinematicRotation(rotation);
+
+        if (obstacle) {
+            obstacle.current.setNextKinematicRotation(rotation);
+        }
     });
 
     return (

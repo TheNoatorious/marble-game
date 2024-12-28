@@ -44,11 +44,13 @@ const BlockAxe = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
         const translationX: number = Math.sin(time + timeOffset) * amplitude;
         const translationY: number = 0.75;
 
-        obstacle.current.setNextKinematicTranslation({
-            x: position[0] + translationX,
-            y: position[1] + translationY,
-            z: position[2],
-        });
+        if (obstacle) {
+            obstacle.current.setNextKinematicTranslation({
+                x: position[0] + translationX,
+                y: position[1] + translationY,
+                z: position[2],
+            });
+        }
     });
 
     return (
