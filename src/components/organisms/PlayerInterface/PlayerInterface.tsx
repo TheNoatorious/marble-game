@@ -18,15 +18,35 @@ const playerInterface = () => {
             {/* Controls */}
             <div className="player-interface__controls">
                 <div className="player-interface__row">
-                    <div className="player-interface__key"></div>
+                    <div
+                        className={`player-interface__key ${
+                            forward ? "player-interface__key--active" : ""
+                        }`}
+                    ></div>
                 </div>
                 <div className="player-interface__row">
-                    <div className="player-interface__key"></div>
-                    <div className="player-interface__key"></div>
-                    <div className="player-interface__key"></div>
+                    <div
+                        className={`player-interface__key ${
+                            leftward ? "player-interface__key--active" : ""
+                        }`}
+                    ></div>
+                    <div
+                        className={`player-interface__key ${
+                            backward ? "player-interface__key--active" : ""
+                        }`}
+                    ></div>
+                    <div
+                        className={`player-interface__key ${
+                            rightward ? "player-interface__key--active" : ""
+                        }`}
+                    ></div>
                 </div>
                 <div className="player-interface__row">
-                    <div className="player-interface__key player-interface__key--large"></div>
+                    <div
+                        className={`player-interface__key player-interface__key--large ${
+                            jump ? "player-interface__key--active" : ""
+                        }`}
+                    ></div>
                 </div>
             </div>
         </div>
