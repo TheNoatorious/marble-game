@@ -4,8 +4,11 @@ import { Cloud, Clouds, OrbitControls, Sky } from "@react-three/drei";
 import Lights from "../../atoms/Lights/Lights";
 import Level from "../../organisms/Level/Level";
 import Player from "../../atoms/Player/Player";
+import useGame from "../../../stores/useGame";
 
 const Experience = () => {
+    const blocksCount = useGame((state) => state.blocksCount);
+
     return (
         <>
             <OrbitControls makeDefault />
@@ -19,7 +22,7 @@ const Experience = () => {
 
             <Physics debug>
                 <Lights />
-                <Level trapCount={4} />
+                <Level trapCount={blocksCount} />
                 <Player />
             </Physics>
         </>
