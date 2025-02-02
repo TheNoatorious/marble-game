@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame, Vector3 } from "@react-three/fiber";
 import { useRapier, RigidBody } from "@react-three/rapier";
+import useGame from "../../../stores/useGame";
 import * as THREE from "three";
 
 const Player = () => {
@@ -9,6 +10,13 @@ const Player = () => {
     const [subscribeKeys, getKeys] = useKeyboardControls();
     const { rapier, world } = useRapier();
     const rapierWorld = world;
+
+    // Retrieve start method from the store)
+    const start = useGame((state) => state.start);
+    const end = useGame((state) => state.end);
+    const restart = useGame((state) => state.restart);
+
+    const blocksCount = useGame((state) => state.blocksCount);
 
     const [smoothedCameraPosition, setSmoothedCameraPosition] =
         useState<THREE.Vector3>(() => new THREE.Vector3(10, 10, 10));
@@ -43,14 +51,18 @@ const Player = () => {
             },
 
             (keyPressed) => {
-                if (keyPressed) {
-                    jump();
-                }
+                if (keyPressed) jump();
             }
         );
 
+        const unsubscribeAny = subscribeKeys(() => {
+            start();
+        });
+
+        // Clean up events
         return () => {
             unsubscribeJump();
+            unsubscribeAny();
         };
     }, []);
 
@@ -102,15 +114,20 @@ const Player = () => {
      * and is set slightly above the marble
      */
     useFrame((state, delta) => {
-        const bodyPosition: any = body.current.translation(); // Position of the marble
+        const marblePosition: any = body.current.translation(); // Position of the marble
         const cameraPosition: Vector3 = new THREE.Vector3();
+        const damping: number = 5; // Interpolation factor for smoothing
+        const blockOffset: number = 2;
+        const blockSize: number = 4;
+        const levelBoundsY: number = -4;
+        const levelBoundsZ: number = -(blocksCount * blockSize + blockOffset);
 
-        cameraPosition.copy(bodyPosition);
+        cameraPosition.copy(marblePosition);
         cameraPosition.y += 0.65;
         cameraPosition.z += 2.25;
 
         const cameraTarget: Vector3 = new THREE.Vector3();
-        cameraTarget.copy(bodyPosition);
+        cameraTarget.copy(marblePosition);
         cameraTarget.y += 0.25;
 
         // Apply lerp to smooth the camera's movement
@@ -124,11 +141,21 @@ const Player = () => {
         setSmoothedCameraPosition(newCameraPosition);
         setSmoothedCameraTarget(newCameraTarget);
 
-        smoothedCameraPosition.lerp(cameraPosition, 5 * delta);
-        smoothedCameraTarget.lerp(cameraTarget, 5 * delta);
+        smoothedCameraPosition.lerp(cameraPosition, damping * delta);
+        smoothedCameraTarget.lerp(cameraTarget, damping * delta);
 
         state.camera.position.copy(cameraPosition);
         state.camera.lookAt(cameraTarget);
+
+        // Test if the marblePosition is falling
+        if (marblePosition.y < levelBoundsY) {
+            restart();
+        }
+
+        // Test if the marblePosition is at the end of the level
+        if (marblePosition.z < levelBoundsZ) {
+            end(); // End of the game
+        }
     });
 
     return (
