@@ -44,8 +44,12 @@ const Player = () => {
         }
     };
 
+    const reset = () => {
+        console.log("reset");
+    };
+
     useEffect(() => {
-const unsubscribeReset = useGame.subscribe(
+        const unsubscribeReset = useGame.subscribe(
             (state) => state.phase,
 
             (phase) => {
@@ -71,6 +75,7 @@ const unsubscribeReset = useGame.subscribe(
 
         // Clean up events
         return () => {
+            unsubscribeReset();
             unsubscribeJump();
             unsubscribeAny();
         };
