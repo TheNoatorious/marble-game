@@ -36,7 +36,8 @@ const Player = () => {
             z: 0,
         };
         const ray = new rapier.Ray(origin, originDirection);
-        const hit = rapierWorld.castRay(ray, 10, true); // Raycaster, Max time of impact, solid
+        const maxToi: number = 10;
+        const hit = rapierWorld.castRay(ray, maxToi, true); // Raycaster, max time of impact, solid
 
         if (hit && hit.timeOfImpact < 0.15) {
             body.current.applyImpulse({ x: 0, y: 0.5, z: 0 });
