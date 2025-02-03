@@ -45,6 +45,15 @@ const Player = () => {
     };
 
     useEffect(() => {
+const unsubscribeReset = useGame.subscribe(
+            (state) => state.phase,
+
+            (phase) => {
+                if (phase === "ready") {
+                    reset();
+                }
+            }
+        );
         const unsubscribeJump = subscribeKeys(
             // Selector function
             (state) => {
