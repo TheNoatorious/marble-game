@@ -83,22 +83,22 @@ const Player = () => {
         const torqueStrength = torqueSpeed * delta;
 
         // impulseStrength is changed according to what is being pressed
+        // Forward / Backward movement
+        // Push marble on the z-axis
+        // Roll marble on the x-axis
         if (forward) {
-            impulse.z -= impulseStrength; // Push marble on the -z-axis
-            torque.x -= torqueStrength; // Roll on the x-axis
-        }
-
-        if (rightward) {
-            impulse.x += impulseStrength;
-            torque.z -= torqueStrength;
-        }
-
-        if (backward) {
+            impulse.z -= impulseStrength;
+            torque.x -= torqueStrength;
+        } else if (backward) {
             impulse.z += impulseStrength;
             torque.x += torqueStrength;
         }
 
-        if (leftward) {
+        // Rightward / Leftward movement
+        if (rightward) {
+            impulse.x += impulseStrength;
+            torque.z -= torqueStrength;
+        } else if (leftward) {
             impulse.x -= impulseStrength;
             torque.z += torqueStrength;
         }
