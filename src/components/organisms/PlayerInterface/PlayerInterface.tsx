@@ -1,5 +1,6 @@
 import "./PlayerInterface.css";
 import { useKeyboardControls } from "@react-three/drei";
+import useGame from "../../../stores/useGame";
 
 const playerInterface = () => {
     const forward = useKeyboardControls((state) => state.forward);
