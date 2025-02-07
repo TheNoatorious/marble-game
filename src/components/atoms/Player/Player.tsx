@@ -12,9 +12,9 @@ const Player = () => {
     const rapierWorld = world;
 
     // Retrieve start method from the store)
-    const start = useGame((state) => state.start);
-    const end = useGame((state) => state.end);
-    const restart = useGame((state) => state.restart);
+    const handleStart = useGame((state) => state.start);
+    const handleEnd = useGame((state) => state.end);
+    const handleRestart = useGame((state) => state.restart);
 
     const blocksCount = useGame((state) => state.blocksCount);
 
@@ -72,7 +72,7 @@ const Player = () => {
         );
 
         const unsubscribeAny = subscribeKeys(() => {
-            start();
+            handleStart();
         });
 
         // Clean up events
@@ -166,12 +166,12 @@ const Player = () => {
 
         // Test if the marblePosition is falling
         if (marblePosition.y < levelBoundsY) {
-            restart();
+            handleRestart();
         }
 
         // Test if the marblePosition is at the end of the level
         if (marblePosition.z < levelBoundsZ) {
-            end(); // End of the game
+            handleEnd(); // End of the game
         }
     });
 
