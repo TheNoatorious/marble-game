@@ -5,7 +5,6 @@ import BlockLimbo from "../../molecules/BlockLimbo/BlockLimbo";
 import BlockSpinner from "../../molecules/BlockSpinner/BlockSpinner";
 import BlockStart from "../../molecules/BlockStart/BlockStart";
 import Bounds from "../../atoms/Bounds/Bounds";
-import { CuboidCollider, RigidBody } from "@react-three/rapier";
 
 /**
  * Level component
@@ -19,9 +18,11 @@ import { CuboidCollider, RigidBody } from "@react-three/rapier";
 const Level = ({
     trapCount = 5,
     types = [BlockSpinner, BlockAxe, BlockLimbo],
+    seed = 0,
 }: {
     trapCount: number;
     types?: React.ComponentType[];
+    seed: number;
 }): React.JSX.Element => {
     const defaultBlocks: number = 2;
     // Returns a random set of traps
@@ -34,7 +35,7 @@ const Level = ({
         }
 
         return blocks;
-    }, [trapCount, types]);
+    }, [trapCount, types, seed]);
 
     return (
         <>

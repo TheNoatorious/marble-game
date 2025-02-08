@@ -7,7 +7,7 @@ import Player from "../../atoms/Player/Player";
 import useGame from "../../../stores/useGame";
 
 const Experience = () => {
-    const blocksCount = useGame((state) => state.blocksCount);
+    const { blocksSeed, blocksCount } = useGame.getState();
 
     return (
         <>
@@ -22,7 +22,7 @@ const Experience = () => {
 
             <Physics debug>
                 <Lights />
-                <Level trapCount={blocksCount} />
+                <Level trapCount={blocksCount} seed={blocksSeed} />
                 <Player />
             </Physics>
         </>
