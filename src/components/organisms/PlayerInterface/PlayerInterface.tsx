@@ -7,7 +7,7 @@ import { addEffect } from "@react-three/fiber";
 
 const playerInterface = () => {
     const handleRestart = useGame((state) => state.restart);
-const phase = useGame((state) => state.phase);
+    const phase = useGame((state) => state.phase);
     const time = useRef<HTMLDivElement>(null); // DOM element
     const elapsedTimeRef = useRef<number>(0); // Store the elapsed time as a number
 
@@ -49,7 +49,7 @@ const phase = useGame((state) => state.phase);
                 {elapsedTimeRef.current}{" "}
                 {/* Displaying elapsed time from ref */}
             </div>
-{phase === "ended" && (
+            {phase === "ended" && (
                 <div
                     className="player-interface__restart"
                     onClick={handleRestart}
