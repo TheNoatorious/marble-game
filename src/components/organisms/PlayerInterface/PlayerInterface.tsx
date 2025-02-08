@@ -45,10 +45,18 @@ const phase = useGame((state) => state.phase);
 
     return (
         <div className="player-interface">
-            <div className="player-interface__time">0.00</div>
-            <div className="player-interface__restart" onClick={handleRestart}>
-                Restart
+            <div className="player-interface__time" ref={time}>
+                {elapsedTimeRef.current}{" "}
+                {/* Displaying elapsed time from ref */}
             </div>
+{phase === "ended" && (
+                <div
+                    className="player-interface__restart"
+                    onClick={handleRestart}
+                >
+                    Restart
+                </div>
+            )}
 
             {/* Controls */}
             <div className="player-interface__controls">
