@@ -24,7 +24,7 @@ const Level = ({
     types?: React.ComponentType[];
     seed: number;
 }): React.JSX.Element => {
-    const defaultBlocks: number = 2;
+    const defaultBlocks: number = 2; // Start + end blocks
     // Returns a random set of traps
     const blocks = useMemo(() => {
         const blocks = [];
