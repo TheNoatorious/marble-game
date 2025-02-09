@@ -20,7 +20,7 @@ const Experience = () => {
 
             <Sky />
 
-            <Physics debug>
+            <Physics>
                 <Lights />
                 <Level trapCount={blocksCount} seed={blocksSeed} />
                 <Player />
