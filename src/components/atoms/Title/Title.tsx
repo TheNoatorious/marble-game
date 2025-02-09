@@ -16,7 +16,7 @@ const Title = ({ text, textPosition }: TitleProps): React.JSX.Element => {
                     textAlign="right"
                     position={textPosition}
                     rotation-y={-0.25}
-                    font="/bebas-neue-v9-latin-regular.woff"
+                    font="/fonts/bebas-neue-v9-latin-regular.woff"
                 >
                     {text}
                     <meshBasicMaterial toneMapped={false} />
