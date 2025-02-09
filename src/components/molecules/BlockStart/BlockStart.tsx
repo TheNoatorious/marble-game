@@ -1,4 +1,5 @@
 import { BoxGeometry, MeshStandardMaterial } from "three";
+import Title from "../../atoms/Title/Title";
 
 const boxGeometry: BoxGeometry = new BoxGeometry(1, 1, 1);
 const floor1Material: MeshStandardMaterial = new MeshStandardMaterial({
@@ -24,6 +25,7 @@ const BlockStart = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
     return (
         <>
             <group position={position}>
+                <Title text="MARBLE RACE GAME" textPosition={[0.75, 0.65, 0]} />
                 <mesh
                     geometry={boxGeometry}
                     material={floor1Material}

@@ -5,7 +5,6 @@ import BlockLimbo from "../../molecules/BlockLimbo/BlockLimbo";
 import BlockSpinner from "../../molecules/BlockSpinner/BlockSpinner";
 import BlockStart from "../../molecules/BlockStart/BlockStart";
 import Bounds from "../../atoms/Bounds/Bounds";
-import Title from "../../atoms/Title/Title";
 
 /**
  * Level component
@@ -44,7 +43,6 @@ const Level = ({
             {blocks.map((Block: any, index: number) => (
                 <Block key={index} position={[0, 0, -(index + 1) * 4]} />
             ))}
-            <Title />
             <BlockEnd position={[0, 0, -(trapCount + 1) * 4]} />
             <Bounds length={trapCount + defaultBlocks} />
         </>

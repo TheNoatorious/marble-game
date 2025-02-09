@@ -1,5 +1,6 @@
 import { BoxGeometry, MeshStandardMaterial } from "three";
 import Disc from "../../atoms/_models/Disc/Disc";
+import Title from "../../atoms/Title/Title";
 
 const boxGeometry: BoxGeometry = new BoxGeometry(1, 1, 1);
 const floor1Material: MeshStandardMaterial = new MeshStandardMaterial({
@@ -25,6 +26,7 @@ const BlockEnd = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
     return (
         <>
             <group position={position}>
+                <Title text="FINISHED" textPosition={[0, 2.25, 2]} />
                 <mesh
                     geometry={boxGeometry}
                     material={floor1Material}

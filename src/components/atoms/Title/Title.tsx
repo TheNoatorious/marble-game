@@ -1,10 +1,26 @@
 import { Float, Text } from "@react-three/drei";
 
-const Title = (): React.JSX.Element => {
+interface TitleProps {
+    text: string;
+    textPosition: [number, number, number];
+}
+
+const Title = ({ text, textPosition }: TitleProps): React.JSX.Element => {
     return (
         <group>
-            <Float>
-                <Text scale={4}>Marble Race</Text>
+            <Float floatIntensity={0.25} rotationIntensity={0.25}>
+                <Text
+                    scale={0.3}
+                    maxWidth={0.2}
+                    lineHeight={0.75}
+                    textAlign="right"
+                    position={textPosition}
+                    rotation-y={-0.25}
+                    font="/bebas-neue-v9-latin-regular.woff"
+                >
+                    {text}
+                    <meshBasicMaterial toneMapped={false} />
+                </Text>
             </Float>
         </group>
     );
