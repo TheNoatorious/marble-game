@@ -11,7 +11,7 @@ import { RigidBody } from "@react-three/rapier";
  * @returns {React.JSX.Element} A ThreeJS primitive object representing the hamburger model.
  */
 const Disc = ({ color, ...props }: any): React.JSX.Element => {
-    const { scene } = useGLTF("./lowpoly_cd.glb");
+    const { scene } = useGLTF("/models/lowpoly_cd.glb");
 
     // Traverse the scene and update the material color
     scene.traverse((child: THREE.Object3D) => {
