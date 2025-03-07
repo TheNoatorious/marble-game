@@ -7,3 +7,6 @@
 .cache
 .eslintcache
 package-lock.json
+coverage
+.scannerwork
+.nyc_output
