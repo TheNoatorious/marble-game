@@ -10,11 +10,12 @@
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "module": "esnext",
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "jsx": "react-jsx" // Enable the new JSX transform
+        "jsx": "react-jsx", // Enable the new JSX transform
+        "types": ["jest", "@testing-library/jest-dom"] // Add this line to include jest-dom types
     },
     "include": ["src"],
     "exclude": ["node_modules"]

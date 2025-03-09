@@ -16,12 +16,19 @@ export default defineConfig({
     server: {
         host: true, // Open to local network and display URL
         open: !(
-            "SANDBOX_URL" in process.env || "CODESANDBOX_HOST" in process.env
+            // eslint-disable-next-line no-undef
+            ("SANDBOX_URL" in process.env || "CODESANDBOX_HOST" in process.env)
         ), // Open if it's not a CodeSandbox
     },
     build: {
         outDir: "../dist", // Output in the dist/ folder
         emptyOutDir: true, // Empty the folder first
         sourcemap: true, // Add sourcemap
+        rollupOptions: {
+            external: ["three"], // Exclude 'three' from bundle to avoid ESM issues
+        },
+    },
+    optimizeDeps: {
+        include: ["three"], // Ensure 'three' is pre-bundled properly
     },
 });
