@@ -24,4 +24,4 @@ jobs:
         needs: build-and-test # De deploy als de build en test succesvol zijn
         steps:
             - name: Deploy to Vercel
-              run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+              run: npx vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
