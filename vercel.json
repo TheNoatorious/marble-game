@@ -1,11 +1,19 @@
 {
+    "version": 2,
     "builds": [
         {
             "src": "package.json",
             "use": "@vercel/node"
+        },
+        {
+            "src": "index.html",
+            "use": "@vercel/static"
         }
     ],
-    "scripts": {
-        "build": "npm install && vite build"
-    }
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/index.html"
+        }
+    ]
 }
