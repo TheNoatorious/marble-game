@@ -10,3 +10,4 @@ package-lock.json
 coverage
 .scannerwork
 .nyc_output
+.vercel
