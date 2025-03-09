@@ -21,7 +21,7 @@ export default defineConfig({
         ), // Open if it's not a CodeSandbox
     },
     build: {
-        outDir: "../dist", // Output in the dist/ folder
+        outDir: "dist", // Output in the dist/ folder
         emptyOutDir: true, // Empty the folder first
         sourcemap: true, // Add sourcemap
         rollupOptions: {},
