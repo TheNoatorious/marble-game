@@ -1,7 +1,7 @@
 import * as THREE from "three";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { RigidBody } from "@react-three/rapier";
+import { RigidBody, RapierRigidBody } from "@react-three/rapier";
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
@@ -23,13 +23,28 @@ const obstacleMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
  *
  * @returns {React.JSX.Element} A ThreeJS group containing two meshes representing a platform and an obstacle.
  */
-const BlockSpinner = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
-    const obstacle: any = useRef();
+
+type BlockSpinnerProps = {
+    position: [number, number, number];
+};
+
+const BlockSpinner = ({
+    position = [0, 0, 0],
+}: BlockSpinnerProps): React.JSX.Element => {
+    const obstacle = useRef<RapierRigidBody | null>(null);
+    const groupRef = useRef<THREE.Group | null>(null); // Create ref for the group
     const minimumSpeed: number = 0.2;
     const counterRotation: number = Math.random() < 0.5 ? -1 : 1; // counter- or clockwiserotation
     const [speed] = useState(
         () => Math.random() + minimumSpeed * counterRotation
     );
+
+    // Memoize the quaternion to prevent recreation every frame
+    const rotation: THREE.Quaternion = useMemo(
+        () => new THREE.Quaternion(),
+        []
+    );
+    const euler: THREE.Euler = useMemo(() => new THREE.Euler(0, 0, 0), []); // Create Euler object once
 
     /**
      * Rotates obstacle on the Y-axis using elapsed time.
@@ -41,17 +56,18 @@ const BlockSpinner = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
      */
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
-        const rotation = new THREE.Quaternion();
-        rotation.setFromEuler(new THREE.Euler(0, time * speed, 0)); // time used as the angle to rotate
+        // Update the Euler angles (no new object created)
+        euler.y = time * speed; // Update only the Y-axis rotation
+        rotation.setFromEuler(euler); // time used as the angle to rotate
 
-        if (obstacle) {
+        if (obstacle.current) {
             obstacle.current.setNextKinematicRotation(rotation);
         }
     });
 
     return (
         <>
-            <group position={position}>
+            <group ref={groupRef} position={position}>
                 <mesh
                     geometry={boxGeometry}
                     material={floor2Material}
@@ -61,10 +77,10 @@ const BlockSpinner = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
                 />
                 <RigidBody
                     ref={obstacle}
-                    type="kinematicPosition" // This obstacle will move but won't be affected by physics like gravity or forces.
+                    type="kinematicPosition" // Kinematic type allows manual rotation/position control
                     position={[0, 0.3, 0]}
-                    restitution={0.2} // The ball will bounce off slightly when it hits (low bounciness).
-                    friction={0} // The ball won't experience any friction when interacting with this obstacle
+                    restitution={0.2}
+                    friction={0}
                 >
                     <mesh
                         geometry={boxGeometry}

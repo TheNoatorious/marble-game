@@ -1,7 +1,7 @@
 import { BoxGeometry, MeshStandardMaterial } from "three";
 import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { RigidBody } from "@react-three/rapier";
+import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 
 const boxGeometry: BoxGeometry = new BoxGeometry(1, 1, 1);
 const floor2Material: MeshStandardMaterial = new MeshStandardMaterial({
@@ -26,8 +26,15 @@ const obstacleMaterial: MeshStandardMaterial = new MeshStandardMaterial({
  *
  * @returns {React.JSX.Element} A ThreeJS group containing two meshes representing a platform and an obstacle.
  */
-const BlockAxe = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
-    const obstacle: any = useRef();
+
+type BlockAxeProps = {
+    position: [number, number, number];
+};
+
+const BlockAxe = ({
+    position = [0, 0, 0],
+}: BlockAxeProps): React.JSX.Element => {
+    const obstacle = useRef<RapierRigidBody | null>(null);
     const [timeOffset] = useState(() => Math.random() * Math.PI * 2);
 
     /**
@@ -44,7 +51,7 @@ const BlockAxe = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
         const translationX: number = Math.sin(time + timeOffset) * amplitude;
         const translationY: number = 0.75;
 
-        if (obstacle) {
+        if (obstacle.current) {
             obstacle.current.setNextKinematicTranslation({
                 x: position[0] + translationX,
                 y: position[1] + translationY,

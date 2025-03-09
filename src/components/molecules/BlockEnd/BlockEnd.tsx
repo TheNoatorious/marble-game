@@ -22,7 +22,14 @@ const floor1Material: MeshStandardMaterial = new MeshStandardMaterial({
  *
  * @returns {React.JSX.Element} A ThreeJS group containing a single mesh representing a block.
  */
-const BlockEnd = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
+
+type BlockEndProps = {
+    position: [number, number, number];
+};
+
+const BlockEnd = ({
+    position = [0, 0, 0],
+}: BlockEndProps): React.JSX.Element => {
     return (
         <>
             <group position={position}>
@@ -30,7 +37,7 @@ const BlockEnd = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
                 <mesh
                     geometry={boxGeometry}
                     material={floor1Material}
-                    position={[0, 0, 0]}
+                    position={position}
                     receiveShadow
                     scale={[4, 0.2, 4]}
                 />

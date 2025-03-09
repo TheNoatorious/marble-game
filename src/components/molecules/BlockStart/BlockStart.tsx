@@ -21,7 +21,14 @@ const floor1Material: MeshStandardMaterial = new MeshStandardMaterial({
  *
  * @returns {React.JSX.Element} A ThreeJS group containing a single mesh representing a block.
  */
-const BlockStart = ({ position = [0, 0, 0] }: any): React.JSX.Element => {
+
+type BlockStartProps = {
+    position: [number, number, number];
+};
+
+const BlockStart = ({
+    position = [0, 0, 0],
+}: BlockStartProps): React.JSX.Element => {
     return (
         <>
             <group position={position}>

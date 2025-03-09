@@ -15,15 +15,17 @@ import Bounds from "../../atoms/Bounds/Bounds";
  * @returns {React.JSX.Element} A 3D level consisting of various components
  */
 
+type LevelProps = {
+    trapCount: number;
+    types?: React.ComponentType<{ position: [number, number, number] }>[];
+    seed: number;
+};
+
 const Level = ({
     trapCount = 5,
     types = [BlockSpinner, BlockAxe, BlockLimbo],
     seed = 0,
-}: {
-    trapCount: number;
-    types?: React.ComponentType[];
-    seed: number;
-}): React.JSX.Element => {
+}: LevelProps): React.JSX.Element => {
     const defaultBlocks: number = 2; // Start + end blocks
     // Returns a random set of traps
     const blocks = useMemo(() => {
@@ -40,7 +42,7 @@ const Level = ({
     return (
         <>
             <BlockStart position={[0, 0, 0]} />
-            {blocks.map((Block: any, index: number) => (
+            {blocks.map((Block, index: number) => (
                 <Block key={index} position={[0, 0, -(index + 1) * 4]} />
             ))}
             <BlockEnd position={[0, 0, -(trapCount + 1) * 4]} />
