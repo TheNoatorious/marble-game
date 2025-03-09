@@ -58,6 +58,9 @@
         "three-mesh-bvh": "^0.8.3",
         "zustand": "^5.0.3"
     },
+    "engines": {
+        "node": "18.x"
+    },
     "nyc": {
         "extension": [
             ".ts",
