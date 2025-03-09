@@ -1,0 +1,27 @@
+name: CI/CD Pipeline
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    build-and-test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: "18"
+            - run: npm install
+            - run: npm test # Draait Jest met coverage
+            - run: npm run build # Bouwt de applicatie met Vite
+
+    deploy:
+        runs-on: ubuntu-latest
+        needs: build-and-test # De deploy als de build en test succesvol zijn
+        steps:
+            - name: Deploy to Vercel
+              run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
