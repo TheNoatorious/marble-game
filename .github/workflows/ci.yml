@@ -16,6 +16,7 @@ jobs:
               with:
                   node-version: "18"
             - run: npm install
+            - run: npm list vite # Check if vite is installed
             - run: npm test # Draait Jest met coverage
             - run: npm run build # Bouwt de applicatie met Vite
 
