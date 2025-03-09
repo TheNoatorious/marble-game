@@ -1,4 +1,4 @@
-[![Website Preview](https://marble-race-nine.vercel.app/img/website-preview.png)](https://marble-race-five.vercel.app/)
+[![Website Preview](https://marble-race-nine.vercel.app/img/website-preview.png)](https://marble-race-nine.vercel.app/)
 _(Click the image to open the project — use Ctrl+Click or Cmd+Click to open in a new tab)_
 
 # Marble Race Game
